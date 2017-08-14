@@ -2,7 +2,7 @@ package com.example.dean.photoviewer.app.ui.photo;
 
 import java.util.List;
 
-public interface PhotoContract {
+public interface PhotoActivityContract {
 
     interface Presenter {
 

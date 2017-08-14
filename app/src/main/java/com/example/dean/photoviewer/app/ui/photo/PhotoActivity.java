@@ -1,9 +1,9 @@
 package com.example.dean.photoviewer.app.ui.photo;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dean.photoviewer.R;
@@ -16,15 +16,18 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class PhotoActivity extends DaggerActivity implements PhotoContract.View {
+public class PhotoActivity extends DaggerActivity implements PhotoActivityContract.View {
 
     @BindView(R.id.photo_view_pager)
     ViewPager photoViewPager;
 
     @Inject
-    PhotoContract.Presenter presenter;
+    PhotoActivityContract.Presenter presenter;
+
+    public static Intent createIntent(final Activity activity) {
+        return new Intent(activity, PhotoActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

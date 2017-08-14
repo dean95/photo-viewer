@@ -2,8 +2,8 @@ package com.example.dean.photoviewer.app.injection.activity.module;
 
 import com.example.dean.photoviewer.app.injection.activity.ActivityScope;
 import com.example.dean.photoviewer.app.injection.activity.DaggerActivity;
-import com.example.dean.photoviewer.app.ui.photo.PhotoContract;
-import com.example.dean.photoviewer.app.ui.photo.PhotoPresenter;
+import com.example.dean.photoviewer.app.ui.photo.PhotoActivityContract;
+import com.example.dean.photoviewer.app.ui.photo.PhotoActivityPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,8 +19,8 @@ public final class ActivityPresenterModule {
 
     @Provides
     @ActivityScope
-    PhotoContract.Presenter providePhotoPresenter() {
-        final PhotoPresenter presenter = new PhotoPresenter((PhotoContract.View) daggerActivity);
+    PhotoActivityContract.Presenter providePhotoPresenter() {
+        final PhotoActivityPresenter presenter = new PhotoActivityPresenter((PhotoActivityContract.View) daggerActivity);
         daggerActivity.getActivityComponent().inject(presenter);
         return presenter;
     }

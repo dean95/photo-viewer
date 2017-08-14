@@ -6,6 +6,8 @@ import android.content.Context;
 import com.example.dean.photoviewer.app.injection.activity.ActivityScope;
 import com.example.dean.photoviewer.app.injection.activity.DaggerActivity;
 import com.example.dean.photoviewer.app.injection.activity.ForActivity;
+import com.example.dean.photoviewer.app.ui.router.Router;
+import com.example.dean.photoviewer.app.ui.router.RouterImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,7 +34,14 @@ public final class ActivityModule {
         return daggerActivity;
     }
 
+    @Provides
+    @ActivityScope
+    Router provideRouter() {
+        return new RouterImpl(daggerActivity);
+    }
+
     public interface Exposes {
 
+        Router router();
     }
 }

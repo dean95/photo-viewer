@@ -10,7 +10,7 @@ public final class PhotoViewModelMapper {
     public List<PhotoViewModel> domainToPhotoViewModel(List<Photo> photos) {
         final List<PhotoViewModel> photoViewModels = new ArrayList<>(photos.size());
 
-        for (Photo photo : photos) {
+        for (final Photo photo : photos) {
             final String description = photo.getDescription() == null ? "Description is not available" : photo.getDescription();
             final PhotoViewModel photoViewModel = new PhotoViewModel(photo.getId(), description,
                                                                      photo.getDateCreated(), photo.getAuthor(), photo.getPhotoUrl());

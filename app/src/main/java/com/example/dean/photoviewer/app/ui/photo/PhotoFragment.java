@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.dean.photoviewer.R;
 import com.example.dean.photoviewer.app.injection.fragment.DaggerFragment;
 import com.example.dean.photoviewer.app.injection.fragment.FragmentComponent;
+import com.example.dean.photoviewer.app.ui.router.Router;
 import com.example.dean.photoviewer.app.util.ImageLoader;
 import com.squareup.picasso.Picasso;
 
@@ -19,8 +20,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class PhotoFragment extends DaggerFragment {
+public class PhotoFragment extends DaggerFragment implements PhotoFragmentContract.View {
 
     private static final String PHOTO_KEY = "photo_key";
 
@@ -40,6 +42,9 @@ public class PhotoFragment extends DaggerFragment {
 
     @Inject
     ImageLoader imageLoader;
+
+    @Inject
+    PhotoFragmentContract.Presenter presenter;
 
     public PhotoFragment() {
 
@@ -68,6 +73,11 @@ public class PhotoFragment extends DaggerFragment {
     @Override
     protected void inject(final FragmentComponent fragmentComponent) {
         fragmentComponent.inject(this);
+    }
+
+    @OnClick(R.id.btn_author_details)
+    public void onButtonClicked() {
+        presenter.showAuthorActivity();
     }
 
     private void bindViews() {

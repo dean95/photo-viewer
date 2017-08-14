@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class PhotoPresenter implements PhotoContract.Presenter {
+public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
 
     @Inject
     GetPhotoDataUseCase getPhotoDataUseCase;
@@ -19,9 +19,9 @@ public class PhotoPresenter implements PhotoContract.Presenter {
     @Inject
     PhotoViewModelMapper photoViewModelMapper;
 
-    private final WeakReference<PhotoContract.View> view;
+    private final WeakReference<PhotoActivityContract.View> view;
 
-    public PhotoPresenter(final PhotoContract.View view) {
+    public PhotoActivityPresenter(final PhotoActivityContract.View view) {
         this.view = new WeakReference<>(view);
     }
 
