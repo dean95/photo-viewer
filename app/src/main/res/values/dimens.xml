@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="photo_fragment_image_height">300dp</dimen>
+    <dimen name="photo_fragment_margin_start">16dp</dimen>
+    <dimen name="photo_fragment_margin_end">16dp</dimen>
+    <dimen name="photo_fragment_label_text_size">20sp</dimen>
+    <dimen name="photo_fragment_vertical_margin_big">16dp</dimen>
+    <dimen name="photo_fragment_vertical_margin_small">8dp</dimen>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/photo_fragment_image_height"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/photo_fragment_margin_end"
+            android:layout_marginLeft="@dimen/photo_fragment_margin_start"
+            android:layout_marginRight="@dimen/photo_fragment_margin_end"
+            android:layout_marginStart="@dimen/photo_fragment_margin_start"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_small"
+                android:text="@string/photo_activity_description_label"
+                android:textSize="@dimen/photo_fragment_label_text_size"
+                tools:text="Description"/>
+
+            <TextView
+                android:id="@+id/tv_photo_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_small"
+                tools:text="A man drinking a coffee."/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_big"
+                android:text="@string/photo_activity_author_label"
+                android:textSize="@dimen/photo_fragment_label_text_size"
+                tools:text="Author"/>
+
+            <TextView
+                android:id="@+id/tv_author_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_small"
+                tools:text="Gilbert Kane"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_big"
+                android:text="@string/photo_activity_created_at_label"
+                android:textSize="@dimen/photo_fragment_label_text_size"
+                tools:text="Created At"/>
+
+            <TextView
+                android:id="@+id/tv_photo_created_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_small"
+                tools:text="2016-05-03T11:00:28-04:00"/>
+
+            <Button
+                android:id="@+id/btn_author_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/photo_fragment_vertical_margin_small"
+                android:text="@string/photo_activity_button_label"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

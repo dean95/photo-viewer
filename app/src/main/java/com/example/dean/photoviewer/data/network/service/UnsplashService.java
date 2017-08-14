@@ -12,7 +12,7 @@ public interface UnsplashService {
 
     String APPLICATION_ID = "Client-ID 66f45808ff812e016ff8ba16bb06e6ab5bd18653c9573a6412a782ef37d34451";
 
-    @Headers("Application: " + APPLICATION_ID)
+    @Headers("Authorization: " + APPLICATION_ID)
     @GET("photos/curated")
     Single<List<ApiCuratedPhoto>> getCuratedPhotos();
 }

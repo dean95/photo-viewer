@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PhotoViewer</string>
+
+    <!-- Photo activity -->
+    <string name="photo_activity_description_label">Description</string>
+    <string name="photo_activity_author_label">Author</string>
+    <string name="photo_activity_created_at_label">Created At</string>
+    <string name="photo_activity_button_label">Author Details</string>
 </resources>
