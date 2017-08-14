@@ -1,5 +1,6 @@
 package com.example.dean.photoviewer.data.database.mappers;
 
+import com.example.dean.photoviewer.app.ui.author.AuthorViewModel;
 import com.example.dean.photoviewer.data.database.entity.DbPhoto;
 import com.example.dean.photoviewer.data.database.entity.DbUser;
 import com.example.dean.photoviewer.domain.model.Photo;
@@ -30,5 +31,13 @@ public final class DbMapper {
         }
 
         return dbUsers;
+    }
+
+    public Photo dbPhotoToDomain(DbPhoto dbPhoto) {
+        return new Photo(dbPhoto.getPhotoId(), dbPhoto.getDescription(), dbPhoto.getDateCreated(), dbPhoto.getAuthor(), dbPhoto.getPhotoUrl());
+    }
+
+    public AuthorViewModel dbUserToViewModel(DbUser user) {
+        return new AuthorViewModel(user.getUserId(), user.getName(), user.getPortfolioUrl(), user.getUsername(), user.getProfileImageUrl());
     }
 }

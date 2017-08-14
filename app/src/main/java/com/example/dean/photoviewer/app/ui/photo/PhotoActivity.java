@@ -44,8 +44,8 @@ public class PhotoActivity extends DaggerActivity implements PhotoActivityContra
     }
 
     @Override
-    public void fetchPhotoDataSuccess(final List<PhotoViewModel> photoViewModels) {
-        photoViewPager.setAdapter(new PhotoFragmentPagerAdapter(getSupportFragmentManager(), photoViewModels));
+    public void fetchPhotoDataSuccess(final List<String> photoIds) {
+        photoViewPager.setAdapter(new PhotoFragmentPagerAdapter(getSupportFragmentManager(), photoIds));
     }
 
     @Override

@@ -9,4 +9,6 @@ import io.reactivex.Single;
 public interface UnsplashClient {
 
     Single<List<ApiCuratedPhoto>> getCuratedPhotos();
+
+    Single<List<ApiCuratedPhoto>> getUsersPhotos(String username);
 }

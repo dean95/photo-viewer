@@ -1,8 +1,6 @@
 package com.example.dean.photoviewer.app.ui.photo;
 
-import com.example.dean.photoviewer.data.database.entity.DbUser;
 import com.example.dean.photoviewer.data.database.mappers.DbMapper;
-import com.example.dean.photoviewer.data.network.mapper.ApiMapper;
 import com.example.dean.photoviewer.domain.interactor.photo.GetPhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.SavePhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.user.SaveUserDataUseCase;
@@ -45,30 +43,30 @@ public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
     @Override
     public void getPhotoData() {
         getPhotoDataUseCase.getPhotos()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::fetchPhotoDataSuccess, this::fetchPhotoDataFail);
+                           .subscribeOn(Schedulers.io())
+                           .observeOn(AndroidSchedulers.mainThread())
+                           .subscribe(this::fetchPhotoDataSuccess, this::fetchPhotoDataFail);
     }
 
     @Override
     public void savePhotoData(List<Photo> photos) {
         Completable.fromAction(() -> savePhotoDataUseCase.savePhotoData(dbMapper.domainPhotoToDb(photos)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                   .subscribeOn(Schedulers.io())
+                   .observeOn(AndroidSchedulers.mainThread())
+                   .subscribe();
     }
 
     @Override
     public void saveUserData(final List<User> user) {
         Completable.fromAction(() -> saveUserDataUseCase.saveUserData(dbMapper.domainUserToDb(user)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe();
+                   .subscribeOn(Schedulers.io())
+                   .observeOn(AndroidSchedulers.mainThread())
+                   .subscribe();
     }
 
     private void fetchPhotoDataSuccess(List<Photo> photos) {
         if (view.get() != null) {
-            view.get().fetchPhotoDataSuccess(photoViewModelMapper.domainToPhotoViewModel(photos));
+            view.get().fetchPhotoDataSuccess(getPhotoIds(photos));
         }
 
         savePhotoData(photos);
@@ -85,5 +83,15 @@ public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
         if (view.get() != null) {
             view.get().fetchPhotoDataFail();
         }
+    }
+
+    private List<String> getPhotoIds(List<Photo> photos) {
+        final List<String> ids = new ArrayList<>(photos.size());
+        for (final Photo photo : photos) {
+            final String id = photo.getId();
+            ids.add(id);
+        }
+
+        return ids;
     }
 }

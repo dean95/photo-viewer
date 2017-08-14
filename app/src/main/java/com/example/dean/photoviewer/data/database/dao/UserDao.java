@@ -15,8 +15,8 @@ public interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<DbUser> user);
 
-    @Query("SELECT * FROM user WHERE username = (:username)")
-    DbUser getUserByUsername(String username);
+    @Query("SELECT * FROM user WHERE name = (:name)")
+    DbUser getUserByName(String name);
 
     @Query("DELETE FROM user")
     void deleteAll();

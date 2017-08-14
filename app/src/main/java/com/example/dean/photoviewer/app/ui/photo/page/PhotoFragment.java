@@ -24,8 +24,6 @@ public class PhotoFragment extends DaggerFragment implements PhotoFragmentContra
 
     public static final String PHOTO_KEY = "photo_key";
 
-    private PhotoViewModel photoModel;
-
     @BindView(R.id.tv_photo_description)
     TextView photoDescription;
 
@@ -48,10 +46,10 @@ public class PhotoFragment extends DaggerFragment implements PhotoFragmentContra
 
     }
 
-    public static PhotoFragment newInstance(final PhotoViewModel photo) {
+    public static PhotoFragment newInstance(final String id) {
         final PhotoFragment photoFragment = new PhotoFragment();
         final Bundle args = new Bundle();
-        args.putParcelable(PHOTO_KEY, photo);
+        args.putString(PHOTO_KEY, id);
         photoFragment.setArguments(args);
         return photoFragment;
     }
@@ -61,11 +59,13 @@ public class PhotoFragment extends DaggerFragment implements PhotoFragmentContra
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_photo_page, container, false);
         ButterKnife.bind(this, view);
-
-        photoModel = getArguments().getParcelable(PHOTO_KEY);
-        bindViews();
-
+        init();
         return view;
+    }
+
+    @Override
+    public void fetchDataSuccess(final PhotoViewModel photoViewModel) {
+        bindViews(photoViewModel);
     }
 
     @Override
@@ -75,10 +75,16 @@ public class PhotoFragment extends DaggerFragment implements PhotoFragmentContra
 
     @OnClick(R.id.btn_author_details)
     public void onButtonClicked() {
-        presenter.showAuthorActivity();
+        final String author = authorName.getText().toString();
+        presenter.showAuthorActivity(author);
     }
 
-    private void bindViews() {
+    private void init() {
+        final String id = getArguments().getString(PHOTO_KEY);
+        presenter.getImageData(id);
+    }
+
+    private void bindViews(final PhotoViewModel photoModel) {
         imageLoader.loadImage(photoModel.getPhotoUrl(), photo);
         photoDescription.setText(photoModel.getDescription());
         photoCreatedDate.setText(photoModel.getDateCreated());

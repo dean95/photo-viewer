@@ -24,6 +24,6 @@ public final class ApiMapperImpl implements ApiMapper {
     }
 
     private User apiUserToDomain(final ApiUser apiUser) {
-        return new User(apiUser.id, apiUser.name, apiUser.username, apiUser.profileImage.medium, apiUser.portfolioUrl);
+        return new User(apiUser.id, apiUser.name, apiUser.username, apiUser.profileImage.large, apiUser.portfolioUrl);
     }
 }

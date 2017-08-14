@@ -18,7 +18,7 @@ public interface PhotoActivityContract {
 
     interface View {
 
-        void fetchPhotoDataSuccess(List<PhotoViewModel> photoViewModels);
+        void fetchPhotoDataSuccess(List<String> ids);
 
         void fetchPhotoDataFail();
     }

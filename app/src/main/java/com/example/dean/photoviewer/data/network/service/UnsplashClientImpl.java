@@ -18,4 +18,9 @@ public final class UnsplashClientImpl implements UnsplashClient {
     public Single<List<ApiCuratedPhoto>> getCuratedPhotos() {
         return unsplashService.getCuratedPhotos();
     }
+
+    @Override
+    public Single<List<ApiCuratedPhoto>> getUsersPhotos(final String username) {
+        return unsplashService.getUsersPhotos(username);
+    }
 }

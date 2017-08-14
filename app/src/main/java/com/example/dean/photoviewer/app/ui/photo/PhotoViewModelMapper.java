@@ -19,4 +19,9 @@ public final class PhotoViewModelMapper {
 
         return photoViewModels;
     }
+
+    public PhotoViewModel domainToPhotoViewModel(Photo photo) {
+        final String description = photo.getDescription() == null ? "Description is not available" : photo.getDescription();
+        return new PhotoViewModel(photo.getId(), description, photo.getDateCreated(), photo.getAuthor(), photo.getPhotoUrl());
+    }
 }

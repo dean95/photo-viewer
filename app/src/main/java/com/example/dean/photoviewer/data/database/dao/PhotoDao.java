@@ -18,6 +18,9 @@ public interface PhotoDao {
     @Query("SELECT * FROM photo")
     List<DbPhoto> getAll();
 
+    @Query("SELECT * FROM photo WHERE _id = (:id)")
+    DbPhoto getOne(String id);
+
     @Query("DELETE FROM photo")
     void deleteAll();
 }

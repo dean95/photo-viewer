@@ -26,6 +26,16 @@ public final class PhotoRepositoryImpl implements PhotoRepository {
     }
 
     @Override
+    public Single<List<ApiCuratedPhoto>> getUsersPhotos(final String username) {
+        return unsplashClient.getUsersPhotos(username);
+    }
+
+    @Override
+    public DbPhoto getOnePhoto(final String id) {
+        return database.photoDao().getOne(id);
+    }
+
+    @Override
     public void savePhotoData(List<DbPhoto> photos) {
         database.photoDao().insertAll(photos);
     }

@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserRepository {
 
     void saveUserData(List<DbUser> users);
+
+    DbUser getUserByName(String name);
 }

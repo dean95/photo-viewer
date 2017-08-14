@@ -23,7 +23,7 @@ public final class FragmentPresenterModule {
 
     @Provides
     PhotoFragmentContract.Presenter providePhotoFragmentPresenter() {
-        final PhotoFragmentPresenter presenter = new PhotoFragmentPresenter();
+        final PhotoFragmentPresenter presenter = new PhotoFragmentPresenter((PhotoFragmentContract.View) daggerFragment);
         getFragmentComponent().inject(presenter);
 
         return presenter;

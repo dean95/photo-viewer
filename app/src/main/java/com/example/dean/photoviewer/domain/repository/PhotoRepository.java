@@ -12,5 +12,9 @@ public interface PhotoRepository {
 
     Single<List<ApiCuratedPhoto>> getPhotos();
 
+    Single<List<ApiCuratedPhoto>> getUsersPhotos(String username);
+
+    DbPhoto getOnePhoto(String id);
+
     void savePhotoData(List<DbPhoto> photos);
 }

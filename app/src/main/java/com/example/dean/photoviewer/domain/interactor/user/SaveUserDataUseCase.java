@@ -5,7 +5,7 @@ import com.example.dean.photoviewer.domain.repository.UserRepository;
 
 import java.util.List;
 
-public class SaveUserDataUseCase {
+public final class SaveUserDataUseCase {
 
     private final UserRepository userRepository;
 

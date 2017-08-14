@@ -7,6 +7,7 @@ import java.util.List;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
 
 public interface UnsplashService {
 
@@ -15,4 +16,8 @@ public interface UnsplashService {
     @Headers("Authorization: " + APPLICATION_ID)
     @GET("photos/curated")
     Single<List<ApiCuratedPhoto>> getCuratedPhotos();
+
+    @Headers("Authorization: " + APPLICATION_ID)
+    @GET("users/{username}/photos?per_page=5")
+    Single<List<ApiCuratedPhoto>> getUsersPhotos(@Path("username") String username);
 }

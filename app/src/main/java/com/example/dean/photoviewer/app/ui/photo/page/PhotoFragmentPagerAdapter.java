@@ -10,21 +10,21 @@ import java.util.List;
 
 public class PhotoFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private final List<PhotoViewModel> photos;
+    private final List<String> photoIds;
 
-    public PhotoFragmentPagerAdapter(final FragmentManager fragmentManager, final List<PhotoViewModel> photos) {
+    public PhotoFragmentPagerAdapter(final FragmentManager fragmentManager, final List<String> photoIds) {
         super(fragmentManager);
 
-        this.photos = photos;
+        this.photoIds = photoIds;
     }
 
     @Override
     public Fragment getItem(final int position) {
-        return PhotoFragment.newInstance(photos.get(position));
+        return PhotoFragment.newInstance(photoIds.get(position));
     }
 
     @Override
     public int getCount() {
-        return photos.size();
+        return photoIds.size();
     }
 }

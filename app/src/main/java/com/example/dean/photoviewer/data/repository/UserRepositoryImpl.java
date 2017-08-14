@@ -18,4 +18,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void saveUserData(final List<DbUser> users) {
         database.userDao().insertAll(users);
     }
+
+    @Override
+    public DbUser getUserByName(final String name) {
+        return database.userDao().getUserByName(name);
+    }
 }
