@@ -6,6 +6,8 @@ import android.content.Intent;
 import com.example.dean.photoviewer.app.injection.activity.ActivityScope;
 import com.example.dean.photoviewer.app.ui.author.AuthorActivity;
 import com.example.dean.photoviewer.app.ui.photo.PhotoActivity;
+import com.example.dean.photoviewer.app.ui.photo.PhotoViewModel;
+import com.example.dean.photoviewer.app.ui.photo.page.PhotoFragment;
 
 @ActivityScope
 public final class RouterImpl implements Router {

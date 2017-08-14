@@ -1,11 +1,18 @@
 package com.example.dean.photoviewer.app.injection.application.module;
 
+import android.arch.persistence.room.Room;
+import android.content.Context;
+
 import com.example.dean.photoviewer.app.application.PhotoViewerApplication;
+import com.example.dean.photoviewer.app.injection.application.ForApplication;
+import com.example.dean.photoviewer.data.database.db.AppDatabase;
 import com.example.dean.photoviewer.data.network.service.UnsplashClient;
 import com.example.dean.photoviewer.data.network.service.UnsplashClientImpl;
 import com.example.dean.photoviewer.data.network.service.UnsplashService;
 import com.example.dean.photoviewer.data.repository.PhotoRepositoryImpl;
+import com.example.dean.photoviewer.data.repository.UserRepositoryImpl;
 import com.example.dean.photoviewer.domain.repository.PhotoRepository;
+import com.example.dean.photoviewer.domain.repository.UserRepository;
 
 import javax.inject.Singleton;
 
@@ -56,6 +63,12 @@ public final class DataModule {
 
     @Provides
     @Singleton
+    AppDatabase provideAppDatabase(@ForApplication final Context context) {
+        return Room.databaseBuilder(context, AppDatabase.class, AppDatabase.DB_NAME).build();
+    }
+
+    @Provides
+    @Singleton
     UnsplashService provideUnsplashService(final Retrofit retrofit) {
         return retrofit.create(UnsplashService.class);
     }
@@ -68,8 +81,14 @@ public final class DataModule {
 
     @Provides
     @Singleton
-    PhotoRepository providePhotoRepository(final UnsplashClient unsplashClient) {
-        return new PhotoRepositoryImpl(unsplashClient);
+    PhotoRepository providePhotoRepository(final UnsplashClient unsplashClient, final AppDatabase appDatabase) {
+        return new PhotoRepositoryImpl(unsplashClient, appDatabase);
+    }
+
+    @Provides
+    @Singleton
+    UserRepository provideUserRepository(final AppDatabase appDatabase) {
+        return new UserRepositoryImpl(appDatabase);
     }
 
     public interface Exposes {

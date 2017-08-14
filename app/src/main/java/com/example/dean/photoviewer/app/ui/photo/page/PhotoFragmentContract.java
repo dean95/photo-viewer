@@ -1,4 +1,4 @@
-package com.example.dean.photoviewer.app.ui.photo;
+package com.example.dean.photoviewer.app.ui.photo.page;
 
 public interface PhotoFragmentContract {
 

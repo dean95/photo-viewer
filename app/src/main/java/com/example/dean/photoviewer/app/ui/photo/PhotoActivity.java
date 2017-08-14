@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.example.dean.photoviewer.R;
 import com.example.dean.photoviewer.app.injection.activity.ActivityComponent;
 import com.example.dean.photoviewer.app.injection.activity.DaggerActivity;
+import com.example.dean.photoviewer.app.ui.photo.page.PhotoFragmentPagerAdapter;
 
 import java.util.List;
 

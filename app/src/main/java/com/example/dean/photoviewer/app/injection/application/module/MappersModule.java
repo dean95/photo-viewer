@@ -1,6 +1,7 @@
 package com.example.dean.photoviewer.app.injection.application.module;
 
 import com.example.dean.photoviewer.app.ui.photo.PhotoViewModelMapper;
+import com.example.dean.photoviewer.data.database.mappers.DbMapper;
 import com.example.dean.photoviewer.data.network.mapper.ApiMapper;
 import com.example.dean.photoviewer.data.network.mapper.ApiMapperImpl;
 
@@ -24,8 +25,17 @@ public final class MappersModule {
         return new PhotoViewModelMapper();
     }
 
+    @Provides
+    @Singleton
+    DbMapper provideDbMapper() {
+        return new DbMapper();
+    }
+
+
     public interface Exposes {
 
         PhotoViewModelMapper photoViewModelMapper();
+
+        DbMapper dbMapper();
     }
 }

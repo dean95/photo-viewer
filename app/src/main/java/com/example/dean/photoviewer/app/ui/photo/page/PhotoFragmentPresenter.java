@@ -1,5 +1,6 @@
-package com.example.dean.photoviewer.app.ui.photo;
+package com.example.dean.photoviewer.app.ui.photo.page;
 
+import com.example.dean.photoviewer.app.ui.photo.PhotoViewModel;
 import com.example.dean.photoviewer.app.ui.router.Router;
 
 import javax.inject.Inject;

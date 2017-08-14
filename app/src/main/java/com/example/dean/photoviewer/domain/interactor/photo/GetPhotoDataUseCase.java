@@ -8,7 +8,7 @@ import java.util.List;
 
 import io.reactivex.Single;
 
-public class GetPhotoDataUseCase {
+public final class GetPhotoDataUseCase {
 
     private final PhotoRepository photoRepository;
     private final ApiMapper apiMapper;

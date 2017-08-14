@@ -1,14 +1,19 @@
 package com.example.dean.photoviewer.app.ui.photo;
 
+import com.example.dean.photoviewer.domain.model.Photo;
+import com.example.dean.photoviewer.domain.model.User;
+
 import java.util.List;
 
 public interface PhotoActivityContract {
 
     interface Presenter {
 
-        void showAuthorActivity();
-
         void getPhotoData();
+
+        void savePhotoData(List<Photo> photos);
+
+        void saveUserData(List<User> user);
     }
 
     interface View {

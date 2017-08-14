@@ -1,8 +1,10 @@
-package com.example.dean.photoviewer.app.ui.photo;
+package com.example.dean.photoviewer.app.ui.photo.page;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.dean.photoviewer.app.ui.photo.PhotoViewModel;
 
 import java.util.List;
 

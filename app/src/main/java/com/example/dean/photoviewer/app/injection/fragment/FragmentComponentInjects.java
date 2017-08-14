@@ -1,7 +1,7 @@
 package com.example.dean.photoviewer.app.injection.fragment;
 
-import com.example.dean.photoviewer.app.ui.photo.PhotoFragment;
-import com.example.dean.photoviewer.app.ui.photo.PhotoFragmentPresenter;
+import com.example.dean.photoviewer.app.ui.photo.page.PhotoFragment;
+import com.example.dean.photoviewer.app.ui.photo.page.PhotoFragmentPresenter;
 
 public interface FragmentComponentInjects {
 

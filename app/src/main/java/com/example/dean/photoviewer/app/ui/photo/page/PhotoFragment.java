@@ -1,8 +1,7 @@
-package com.example.dean.photoviewer.app.ui.photo;
+package com.example.dean.photoviewer.app.ui.photo.page;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,8 @@ import android.widget.TextView;
 import com.example.dean.photoviewer.R;
 import com.example.dean.photoviewer.app.injection.fragment.DaggerFragment;
 import com.example.dean.photoviewer.app.injection.fragment.FragmentComponent;
-import com.example.dean.photoviewer.app.ui.router.Router;
+import com.example.dean.photoviewer.app.ui.photo.PhotoViewModel;
 import com.example.dean.photoviewer.app.util.ImageLoader;
-import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -24,7 +22,7 @@ import butterknife.OnClick;
 
 public class PhotoFragment extends DaggerFragment implements PhotoFragmentContract.View {
 
-    private static final String PHOTO_KEY = "photo_key";
+    public static final String PHOTO_KEY = "photo_key";
 
     private PhotoViewModel photoModel;
 
