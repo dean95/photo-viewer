@@ -14,6 +14,8 @@ public interface PhotoActivityContract {
         void savePhotoData(List<Photo> photos);
 
         void saveUserData(List<User> user);
+
+        void getUserPhotos();
     }
 
     interface View {

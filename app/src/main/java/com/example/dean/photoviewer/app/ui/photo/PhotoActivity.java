@@ -50,12 +50,16 @@ public class PhotoActivity extends DaggerActivity implements PhotoActivityContra
 
     @Override
     public void fetchPhotoDataFail() {
-        Toast.makeText(this, "fetchPhotoDataFail", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error fetching images", Toast.LENGTH_SHORT).show();
     }
 
     private void init() {
         ButterKnife.bind(this);
 
-        presenter.getPhotoData();
+        if(getIntent().getStringExtra(Intent.EXTRA_TEXT) == null) {
+            presenter.getPhotoData();
+        } else {
+            presenter.getUserPhotos();
+        }
     }
 }

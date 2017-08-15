@@ -36,7 +36,22 @@ public final class PhotoRepositoryImpl implements PhotoRepository {
     }
 
     @Override
+    public List<DbPhoto> getUsersPhotos() {
+        return database.photoDao().getLastFivePhotos();
+    }
+
+    @Override
     public void savePhotoData(List<DbPhoto> photos) {
         database.photoDao().insertAll(photos);
+    }
+
+    @Override
+    public void saveUserPhotos(final List<DbPhoto> userPhotos) {
+        database.photoDao().insertAll(userPhotos);
+    }
+
+    @Override
+    public void deletePhotoData() {
+        database.photoDao().deleteAll();
     }
 }

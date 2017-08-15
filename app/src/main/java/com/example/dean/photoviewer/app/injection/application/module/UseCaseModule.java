@@ -1,9 +1,12 @@
 package com.example.dean.photoviewer.app.injection.application.module;
 
+import com.example.dean.photoviewer.data.database.mappers.DbMapper;
 import com.example.dean.photoviewer.data.network.mapper.ApiMapper;
+import com.example.dean.photoviewer.domain.interactor.photo.DeletePhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.GetOnePhotoUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.GetPhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.SavePhotoDataUseCase;
+import com.example.dean.photoviewer.domain.interactor.photo.SaveUserPhotosUseCase;
 import com.example.dean.photoviewer.domain.interactor.user.GetOneUserUseCase;
 import com.example.dean.photoviewer.domain.interactor.user.GetUserPhotosUseCase;
 import com.example.dean.photoviewer.domain.interactor.user.SaveUserDataUseCase;
@@ -54,6 +57,18 @@ public final class UseCaseModule {
         return new GetUserPhotosUseCase(photoRepository, apiMapper);
     }
 
+    @Provides
+    @Singleton
+    SaveUserPhotosUseCase provideSaveUserPhotosUseCase(final PhotoRepository photoRepository, final DbMapper dbMapper) {
+        return new SaveUserPhotosUseCase(photoRepository, dbMapper);
+    }
+
+    @Provides
+    @Singleton
+    DeletePhotoDataUseCase provideDeletePhotoDataUseCase(final PhotoRepository photoRepository) {
+        return new DeletePhotoDataUseCase(photoRepository);
+    }
+
     public interface Exposes {
 
         GetPhotoDataUseCase getPhotoDataUseCase();
@@ -67,5 +82,9 @@ public final class UseCaseModule {
         GetOneUserUseCase getOneUserUseCase();
 
         GetUserPhotosUseCase getUsersPhotosUseCase();
+
+        SaveUserPhotosUseCase saveUserPhotos();
+
+        DeletePhotoDataUseCase deletePhotoDataUseCase();
     }
 }

@@ -37,6 +37,17 @@ public final class DbMapper {
         return new Photo(dbPhoto.getPhotoId(), dbPhoto.getDescription(), dbPhoto.getDateCreated(), dbPhoto.getAuthor(), dbPhoto.getPhotoUrl());
     }
 
+    public List<Photo> dbPhotosToDomain(List<DbPhoto> dbPhotos) {
+        final List<Photo> photos = new ArrayList<>(dbPhotos.size());
+        for (DbPhoto dbPhoto : dbPhotos) {
+            final Photo photo = new Photo(dbPhoto.getPhotoId(),
+                                          dbPhoto.getDescription(), dbPhoto.getDateCreated(), dbPhoto.getAuthor(), dbPhoto.getPhotoUrl());
+            photos.add(photo);
+        }
+
+        return photos;
+    }
+
     public AuthorViewModel dbUserToViewModel(DbUser user) {
         return new AuthorViewModel(user.getUserId(), user.getName(), user.getPortfolioUrl(), user.getUsername(), user.getProfileImageUrl());
     }

@@ -21,6 +21,9 @@ public interface PhotoDao {
     @Query("SELECT * FROM photo WHERE _id = (:id)")
     DbPhoto getOne(String id);
 
+    @Query("SELECT * FROM photo ORDER BY rowid DESC LIMIT 5")
+    List<DbPhoto> getLastFivePhotos();
+
     @Query("DELETE FROM photo")
     void deleteAll();
 }

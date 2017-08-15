@@ -18,6 +18,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AuthorActivity extends DaggerActivity implements AuthorContract.View {
 
@@ -93,5 +94,10 @@ public class AuthorActivity extends DaggerActivity implements AuthorContract.Vie
 
         final String authorName = getIntent().getStringExtra(AUTHOR_NAME_KEY);
         presenter.getAuthorData(authorName);
+    }
+
+    @OnClick({R.id.iv_photo1, R.id.iv_photo2, R.id.iv_photo3, R.id.iv_photo4, R.id.iv_photo5})
+    public void onImageClick() {
+        presenter.showPhotoActivity();
     }
 }

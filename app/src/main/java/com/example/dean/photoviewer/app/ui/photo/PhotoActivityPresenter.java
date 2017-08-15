@@ -1,8 +1,10 @@
 package com.example.dean.photoviewer.app.ui.photo;
 
 import com.example.dean.photoviewer.data.database.mappers.DbMapper;
+import com.example.dean.photoviewer.domain.interactor.photo.DeletePhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.GetPhotoDataUseCase;
 import com.example.dean.photoviewer.domain.interactor.photo.SavePhotoDataUseCase;
+import com.example.dean.photoviewer.domain.interactor.user.GetUserPhotosUseCase;
 import com.example.dean.photoviewer.domain.interactor.user.SaveUserDataUseCase;
 import com.example.dean.photoviewer.domain.model.Photo;
 import com.example.dean.photoviewer.domain.model.User;
@@ -14,6 +16,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -30,6 +33,12 @@ public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
 
     @Inject
     PhotoViewModelMapper photoViewModelMapper;
+
+    @Inject
+    GetUserPhotosUseCase getUserPhotosUseCase;
+
+    @Inject
+    DeletePhotoDataUseCase deletePhotoDataUseCase;
 
     @Inject
     DbMapper dbMapper;
@@ -64,6 +73,21 @@ public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
                    .subscribe();
     }
 
+    @Override
+    public void getUserPhotos() {
+        Single.fromCallable(() -> getUserPhotosUseCase.getUserPhotos())
+              .map(dbPhoto -> dbMapper.dbPhotosToDomain(dbPhoto))
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(this::fetchUserPhotosSuccess, this::errorHandling);
+    }
+
+    private void fetchUserPhotosSuccess(List<Photo> photos) {
+        if (view.get() != null) {
+            view.get().fetchPhotoDataSuccess(getPhotoIds(photos));
+        }
+    }
+
     private void fetchPhotoDataSuccess(List<Photo> photos) {
         if (view.get() != null) {
             view.get().fetchPhotoDataSuccess(getPhotoIds(photos));
@@ -93,5 +117,9 @@ public class PhotoActivityPresenter implements PhotoActivityContract.Presenter {
         }
 
         return ids;
+    }
+
+    private void errorHandling(final Throwable throwable) {
+        //do nothing
     }
 }

@@ -6,4 +6,11 @@
     <dimen name="photo_fragment_label_text_size">20sp</dimen>
     <dimen name="photo_fragment_vertical_margin_big">16dp</dimen>
     <dimen name="photo_fragment_vertical_margin_small">8dp</dimen>
+    <dimen name="author_activity_profile_photo_width">128dp</dimen>
+    <dimen name="author_activity_profile_photo_height">128dp</dimen>
+    <dimen name="author_activity_margin_big">16dp</dimen>
+    <dimen name="author_activity_margin_small">8dp</dimen>
+    <dimen name="author_activity_images_margin">8dp</dimen>
+    <dimen name="author_activity_name_text_size">18sp</dimen>
+    <dimen name="author_activity_url_text_size">16sp</dimen>
 </resources>

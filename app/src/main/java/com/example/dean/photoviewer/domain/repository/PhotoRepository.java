@@ -16,5 +16,11 @@ public interface PhotoRepository {
 
     DbPhoto getOnePhoto(String id);
 
+    List<DbPhoto> getUsersPhotos();
+
     void savePhotoData(List<DbPhoto> photos);
+
+    void saveUserPhotos(List<DbPhoto> userPhotos);
+
+    void deletePhotoData();
 }

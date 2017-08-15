@@ -11,6 +11,8 @@ public interface AuthorContract {
         void getAuthorData(String authorName);
 
         void getAuthorPhotos(String username);
+
+        void showPhotoActivity();
     }
 
     interface View {

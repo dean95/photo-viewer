@@ -19,6 +19,7 @@ public final class RouterImpl implements Router {
     @Override
     public void showPhotoActivity() {
         final Intent intent = PhotoActivity.createIntent(activity);
+        intent.putExtra(Intent.EXTRA_TEXT, "extra");
         activity.startActivity(intent);
     }
 

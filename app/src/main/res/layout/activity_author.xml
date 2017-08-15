@@ -7,22 +7,31 @@
 
     <ImageView
         android:id="@+id/iv_profile_picture"
-        android:layout_width="128dp"
-        android:layout_height="128dp"/>
+        android:layout_width="@dimen/author_activity_profile_photo_width"
+        android:layout_height="@dimen/author_activity_profile_photo_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/author_activity_margin_small"/>
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/author_activity_margin_big"
+        android:textSize="@dimen/author_activity_name_text_size"/>
 
     <TextView
         android:id="@+id/tv_portfolio_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/author_activity_margin_small"
+        android:textSize="@dimen/author_activity_url_text_size"/>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/author_activity_margin_big">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,27 +41,37 @@
             <ImageView
                 android:id="@+id/iv_photo1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/author_activity_images_margin"/>
 
             <ImageView
                 android:id="@+id/iv_photo2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/author_activity_images_margin"/>
 
             <ImageView
                 android:id="@+id/iv_photo3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/author_activity_images_margin"/>
 
             <ImageView
                 android:id="@+id/iv_photo4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/author_activity_images_margin"/>
 
             <ImageView
                 android:id="@+id/iv_photo5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/author_activity_images_margin"/>
 
         </LinearLayout>
     </HorizontalScrollView>

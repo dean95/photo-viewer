@@ -1,5 +1,7 @@
 package com.example.dean.photoviewer.app.ui.photo.page;
 
+import android.util.Log;
+
 import com.example.dean.photoviewer.app.ui.photo.PhotoViewModelMapper;
 import com.example.dean.photoviewer.app.ui.router.Router;
 import com.example.dean.photoviewer.data.database.entity.DbUser;
@@ -46,12 +48,16 @@ public class PhotoFragmentPresenter implements PhotoFragmentContract.Presenter {
               .map(dbPhoto -> dbMapper.dbPhotoToDomain(dbPhoto))
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(this::fetchDataSuccess);
+              .subscribe(this::fetchDataSuccess, this::errorHandling);
     }
 
     private void fetchDataSuccess(final Photo photo) {
         if (view.get() != null) {
             view.get().fetchDataSuccess(photoViewModelMapper.domainToPhotoViewModel(photo));
         }
+    }
+
+    private void errorHandling(final Throwable throwable) {
+        Log.d("PhotoFragmentPresenter", throwable.getMessage());
     }
 }
