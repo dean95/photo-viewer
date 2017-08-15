@@ -18,18 +18,23 @@ public final class ThreadingModule {
     @Provides
     @Singleton
     @Named(ThreadingModule.MAIN_SCHEDULER)
-    Scheduler provideMainScheduler() {
+    public Scheduler provideMainScheduler() {
         return AndroidSchedulers.mainThread();
     }
 
     @Provides
     @Singleton
     @Named(ThreadingModule.BACKGROUND_SCHEDULER)
-    Scheduler provideBackgroundScheduler() {
+    public Scheduler provideBackgroundScheduler() {
         return Schedulers.io();
     }
 
     public interface Exposes {
 
+        @Named(ThreadingModule.MAIN_SCHEDULER)
+        Scheduler mainScheduler();
+
+        @Named(ThreadingModule.BACKGROUND_SCHEDULER)
+        Scheduler backgroundScheduler();
     }
 }

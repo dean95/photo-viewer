@@ -39,6 +39,12 @@ public class PhotoActivity extends DaggerActivity implements PhotoActivityContra
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
+    @Override
     protected void inject(final ActivityComponent activityComponent) {
         activityComponent.inject(this);
     }

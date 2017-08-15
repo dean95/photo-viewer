@@ -9,6 +9,8 @@ public interface PhotoFragmentContract {
         void showAuthorActivity(String auhorName);
 
         void getImageData(String id);
+
+        void unsubscribe();
     }
 
     interface View {

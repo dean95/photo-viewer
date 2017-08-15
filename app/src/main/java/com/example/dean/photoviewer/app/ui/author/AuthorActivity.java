@@ -85,6 +85,12 @@ public class AuthorActivity extends DaggerActivity implements AuthorContract.Vie
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
+    @Override
     protected void inject(final ActivityComponent activityComponent) {
         activityComponent.inject(this);
     }

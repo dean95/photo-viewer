@@ -16,6 +16,8 @@ public interface PhotoActivityContract {
         void saveUserData(List<User> user);
 
         void getUserPhotos();
+
+        void unsubscribe();
     }
 
     interface View {

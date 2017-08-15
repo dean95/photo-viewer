@@ -1,5 +1,6 @@
 package com.example.dean.photoviewer.app.ui.author;
 
+import com.example.dean.photoviewer.app.injection.application.module.ThreadingModule;
 import com.example.dean.photoviewer.app.ui.router.Router;
 import com.example.dean.photoviewer.data.database.mappers.DbMapper;
 import com.example.dean.photoviewer.domain.interactor.photo.SaveUserPhotosUseCase;
@@ -11,15 +12,20 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.reactivex.Completable;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class AuthorPresenter implements AuthorContract.Presenter {
 
     private WeakReference<AuthorContract.View> view;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
 
     public AuthorPresenter(final AuthorContract.View view) {
         this.view = new WeakReference<>(view);
@@ -35,6 +41,14 @@ public class AuthorPresenter implements AuthorContract.Presenter {
     SaveUserPhotosUseCase saveUserPhotosUseCase;
 
     @Inject
+    @Named(ThreadingModule.MAIN_SCHEDULER)
+    Scheduler mainScheduler;
+
+    @Inject
+    @Named(ThreadingModule.BACKGROUND_SCHEDULER)
+    Scheduler backgroundScheduler;
+
+    @Inject
     Router router;
 
     @Inject
@@ -42,24 +56,31 @@ public class AuthorPresenter implements AuthorContract.Presenter {
 
     @Override
     public void getAuthorData(final String authorName) {
-        Single.fromCallable(() -> getOneUserUseCase.getUser(authorName))
-              .map(dbUser -> dbMapper.dbUserToViewModel(dbUser))
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(this::fetchUserSuccess);
+        disposables.add(Single.fromCallable(() -> getOneUserUseCase.getUser(authorName))
+                              .map(dbUser -> dbMapper.dbUserToViewModel(dbUser))
+                              .subscribeOn(backgroundScheduler)
+                              .observeOn(mainScheduler)
+                              .subscribe(this::fetchUserSuccess));
     }
 
     @Override
     public void getAuthorPhotos(final String username) {
-        getUserPhotosUseCase.getUsersPhotos(username)
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(this::getUsersPhotosSuccess);
+        disposables.add(getUserPhotosUseCase.getUsersPhotos(username)
+                                            .subscribeOn(backgroundScheduler)
+                                            .observeOn(mainScheduler)
+                                            .subscribe(this::getUsersPhotosSuccess));
     }
 
     @Override
     public void showPhotoActivity() {
         router.showPhotoActivity();
+    }
+
+    @Override
+    public void unsubscribe() {
+        if (!disposables.isDisposed()) {
+            disposables.dispose();
+        }
     }
 
     private void getUsersPhotosSuccess(final List<Photo> photos) {
@@ -78,8 +99,8 @@ public class AuthorPresenter implements AuthorContract.Presenter {
 
     private void saveUserPhotos(final List<Photo> photos) {
         Completable.fromAction(() -> saveUserPhotosUseCase.saveUserPhotos(photos))
-                   .subscribeOn(Schedulers.io())
-                   .observeOn(AndroidSchedulers.mainThread())
+                   .subscribeOn(backgroundScheduler)
+                   .observeOn(mainScheduler)
                    .subscribe();
     }
 }

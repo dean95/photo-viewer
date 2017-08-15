@@ -13,6 +13,8 @@ public interface AuthorContract {
         void getAuthorPhotos(String username);
 
         void showPhotoActivity();
+
+        void unsubscribe();
     }
 
     interface View {

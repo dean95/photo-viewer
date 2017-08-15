@@ -64,6 +64,12 @@ public class PhotoFragment extends DaggerFragment implements PhotoFragmentContra
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
+    @Override
     public void fetchDataSuccess(final PhotoViewModel photoViewModel) {
         bindViews(photoViewModel);
     }
